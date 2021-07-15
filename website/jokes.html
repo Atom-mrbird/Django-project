@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Django Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="static/main.css" />
+	</head>
+	<body>
+    <header id="header" class="alt">
+				<div class="inner">
+					<h1>JOKES</h1>
+				</div>
+			</header>
+			<div id="wrapper">
+<iframe src="https://official-joke-api.appspot.com/random_joke" width="420" height="240" frameborder="no"></iframe>
+    <button onclick="history.go(0)">Next Joke</button>
+                <iframe src="https://api.ipify.org?format=json" width="420" height="240" frameborder="no"></iframe>
+<button onclick=window.location.href="{% url 'create' %}">create</button>
+
+                </div>
+<script src="static/jquery.min.js"></script>
+    <script src="static/api.js"></script>
+    <script src="static/skel.min.js"></script>
+			<script src="static/util.js"></script>
+			<script src="static/main.js"></script>
+    <script src="static/package.json"></script>
+    </body>
+</html>
