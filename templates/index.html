@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Django Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="static/main.css" />
+	</head>
+	<body>
+
+			<header id="header" class="alt">
+				<div class="inner">
+					<h1>Django Project</h1>
+
+				</div>
+			</header>
+			<div id="wrapper">
+
+					<section class="main items">
+						<article class="item">
+							<header>
+								<a href="{% url 'jokes' %}"><img src="static/joke.jpg" alt="" /></a>
+								<h3>JOKE</h3>
+							</header>
+							<p>Random Jokes</p>
+						</article>
+					</section>
+			</div>
+			<script src="static/jquery.min.js"></script>
+			<script src="static/skel.min.js"></script>
+			<script src="static/util.js"></script>
+			<script src="static/main.js"></script>
+    </body>
+</html>
