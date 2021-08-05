@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.middleware.csrf import get_token
 from django.shortcuts import render, get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import action
@@ -32,16 +32,24 @@ def create_page(request):
 		return render(request,"index.html")
 		return render(request, "create.html")
 
+def connect_api(request):
+	response = requests.get('http://18.194.157.25:8000/apicalls')
+	pic = response.json()
+	context ={
+		'name':pic
+	}
+	return render(request, "connect_api.html",context)
+
 class NotFoundException (Exception):
     pass
 
 class jokelist(APIView):
 
 	def get_object(self,pk):
-		qs = Joke.objects.filter(joke=pk)
+		qs = Joke.objects.filter(id=pk)
 		if qs.count() == 1:
 			return qs.first()
-		return Joke.objects.filter(joke=self.request.POST)
+		return Joke.objects.filter(id=self.request.POST)
 
 	def get(self, request):
 		products = Joke.objects.all()
@@ -56,21 +64,19 @@ class jokelist(APIView):
 			return Response(serializer.data, status=status.HTTP_201_CREATED)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-	@action(methods=['delete'], detail=False)
-	def delete(self, pk):
-		todo = get_object_or_404(Joke, joke=pk)
-		todo.delete()
-		return Response(status=status.HTTP_204_NO_CONTENT)
-
 class JokeDetailView(APIView):
 
-	def get(self, request, pk):
-		todo = get_object_or_404(Joke, joke=pk)
-		serializer = JokeSerializer(todo)
+	@action(methods=['post'], detail=False)
+	def post(self, request):
+		url = {'api/id'}
+		header = {'id': f'joke{get_token()}'}
+		response = requests.get(url, headers=header)
+		serializer = JokeSerializer(response)
 		return Response(serializer.data)
 
 	@action(methods=['delete'], detail=False)
-	def delete(self, pk):
-		todo = get_object_or_404(Joke, joke=pk)
-		todo.delete()
-		return Response(status=status.HTTP_204_NO_CONTENT)
+	def delete(self):
+		url = {'api/id'}
+		header = {'id':f'joke{get_token()}'}
+		response = requests.delete(url,headers=header)
+		return Response(response.request,status=status.HTTP_204_NO_CONTENT)
