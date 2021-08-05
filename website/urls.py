@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from project.views import starting_page, joke_page, create_page
+from project.views import starting_page, joke_page, create_page, jokelist,JokeDetailView,connect_api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', starting_page, name="index"),
     path('gallery', joke_page, name="jokes"),
     path('create', create_page, name="create")
+    path('api', jokelist.as_view(),name="list"),
+    path('api/<id>/', JokeDetailView.as_view(),name="del"),
+    path('connect',connect_api,name='connect')
 ]
