@@ -15,32 +15,14 @@
 				</div>
 			</header>
 			<div id="content-main">
+                {% for name in name %}
                 <article class="media content-section">
                      <div class="media-body">
             <div class="article-metadata">
-                <img src="{{ name }}">
-                <img class="img-fluid" src=src="https://images.unsplash.com/photo-1625757215997-084e4b4ba956?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNDM3ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjgxNjgyOTc&ixlib=rb-1.2.1&q=80&w=1080">
-                <img class="img-fluid" src="https://images.unsplash.com/photo-1625342303563-f789ca29be97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNDM3ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjgxNjAwNDc&ixlib=rb-1.2.1&q=80&w=1080">
-                <img class="img-fluid" src="https://images.unsplash.com/photo-1626370412296-ed205cff7a29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNDM3ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjgxNjAwNDM&ixlib=rb-1.2.1&q=80&w=1080">
-<img class="img-fluid" src="https://images.unsplash.com/photo-1625434998283-460380a78288?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwyNDM3ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjgxNTU0Mjg&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1080" alt="">
-                    <img class="img-fluid" src="https://images.unsplash.com/photo-1623093177725-639e36469032?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwyNDM3ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjgxNTQyOTE&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1080" alt="">
-                     <div class="media-body">
-            <div class="article-metadata">
-              <img class= "img-fluid" src="https://images.unsplash.com/photo-1625922900686-388f9aab5471?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNDM3ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Mjc5MDgyODE&ixlib=rb-1.2.1&q=80&w=1080">
-            </div>
-          </div>
-          <div class="media-body">
-            <div class="article-metadata">
-              <img class= "img-fluid" src="https://images.unsplash.com/photo-1627674463978-9d0c88a2e0a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNDM3ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Mjc5MDY4NTQ&ixlib=rb-1.2.1&q=80&w=1080">
-            </div>
-          </div>
-                     <div class="media-body">
-            <div class="article-metadata">
-              <img class= "img-fluid" src="https://images.unsplash.com/photo-1626125953180-4932af16ffb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNDM3ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Mjc5MDYyMTg&ixlib=rb-1.2.1&q=80&w=1080">
+                <img src="{{ name.name }}">
             </div>
                      </div>
-            </div>
-                     </div>
+                    {% endfor %}
         </article>
 			</div>
 			<script src="static/jquery.min.js"></script>
