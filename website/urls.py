@@ -24,6 +24,6 @@ urlpatterns = [
     path('gallery', joke_page, name="jokes"),
     path('create', create_page, name="create"),
     path('api', jokelist.as_view(), name="list"),
-    path('api/<id>/', JokeDetailView.as_view(), name="del"),
+    path('api/<int:pk>/delete', JokeDetailView.as_view(), name="del"),
     path('connect', connect_api, name='connect')
 ]
