@@ -1,3 +1,4 @@
+from django.http import Http404, JsonResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import render
 from rest_framework import status
@@ -70,15 +71,24 @@ class jokelist(APIView):
 
 class JokeDetailView(APIView):
 
-    def post(request):
-        url = {'api/id'}
-        header = {'id': f'joke{get_token()}'}
-        response = requests.get(url, headers=header)
-        serializer = JokeSerializer(response)
+    def get_object(self, pk):
+        try:
+            return Joke.objects.get(pk=pk)
+        except Joke.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        apicall = self.get_object(pk)
+        serializer = JokeSerializer(apicall)
         return Response(serializer.data)
 
-    def delete(self):
-        url = {'api/id'}
-        header = {'id': f'joke{get_token()}'}
-        response = requests.delete(url, headers=header)
-        return Response(response.request, status=status.HTTP_204_NO_CONTENT)
+    def delete(self, request, pk, format=None):
+        apicall = self.get_object(pk)
+        apicall.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def post(self, request):
+        card = request.POST.get('test2')
+        b = Joke(name=card, favorite=True)
+        b.save()
+        return JsonResponse({'good': card}, status=200)
